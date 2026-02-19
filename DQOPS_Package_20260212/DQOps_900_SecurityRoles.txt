@@ -1,0 +1,12 @@
+
+Three Security Roles have to be manually created:
+DQ Ops Admin - DQ Ops Admin
+- rights on DQ Ops - PowerDesigner
+- rights on DQ Ops - PowerUser
+
+DQ Ops User - DQ Ops User
+- right on DQ Ops - User
+
+DQ Ops User - Issue Manager - DQ Ops User - Issue Manager
+- right on DQ Ops - OnlyIssue
+
