@@ -1540,7 +1540,7 @@ ID
 , CASE WHEN (Define = 1 OR Specify = 1) AND ISNULL(Build, 0) = 0 THEN 1 ELSE 0 END AS Specify
 , CASE WHEN (Specify = 1 OR Build = 1) AND ISNULL(ValidateImprove, 0) = 0 THEN 1 ELSE 0 END AS Build
 , CASE WHEN (Build = 1 OR ValidateImprove = 1) AND ISNULL(Publish, 0) = 0 THEN 1 ELSE 0 END AS ValidateImprove
-, CASE WHEN (ValidateImprove = 1 OR Publish = 1) AND ISNULL(Dimensions, 0) = 0 THEN 1 ELSE 0 END AS Publish
+, CASE WHEN (ValidateImprove = 1 OR Publish = 1) /*AND ISNULL(Dimensions, 0) = 0*/ THEN 1 ELSE 0 END AS Publish
 , CASE WHEN EXISTS(SELECT 1 FROM ztCustomField01) THEN 1 ELSE 2 END AS CustomField01
 , CASE WHEN EXISTS(SELECT 1 FROM ztCustomField02) THEN 1 ELSE 2 END AS CustomField02
 , CASE WHEN EXISTS(SELECT 1 FROM ztCustomField03) THEN 1 ELSE 2 END AS CustomField03
@@ -3451,3 +3451,4 @@ END
 
 
 GO
+
