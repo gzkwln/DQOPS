@@ -2735,31 +2735,32 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [dbo].[webAssignDqOpsUpd] 
-@RuleOrigin nvarchar(50), @ID int
-AS
-BEGIN
-
-
-UPDATE ttDQReportTracker 
-SET 
-DqOpsId = t2.LastNumberUsed + 1
-
-FROM ttDQReportTracker t1
-INNER JOIN ztNumberRange t2 ON t1.RuleOrigin = t2.RuleOrigin
-WHERE 
-    t1.DqOpsId IS NULL  
-    AND t2.LastNumberUsed < t2.ToNumber
-	AND t1.ID=@ID
-	AND T1.RuleOrigin=@RuleOrigin;  
-
-
-UPDATE ztNumberRange 
-SET LastNumberUsed = LastNumberUsed + 1
-WHERE 
-ztNumberRange.RuleOrigin =@RuleOrigin
-
-END
+CREATE PROCEDURE [dbo].[webAssignDqOpsUpd] @RuleOrigin nvarchar(50),
+                                           @ID                    int 
+AS 
+  BEGIN 
+    DECLARE @DQOpsId as bit; 
+    SET @DQOpsId = (SELECT case
+                             when DqOpsId is null
+                             then '0'
+                             else '1'
+                           end as DQOpsId
+                    FROM   ttDQReportTracker t1
+                    WHERE  t1.ID = @ID
+                           AND T1.RuleOrigin = @RuleOrigin) 
+    IF @DQOpsId = '0' 
+      BEGIN  
+        UPDATE ttDQReportTracker
+SET     DqOpsId = t2.LastNumberUsed + 1 FROM ttDQReportTracker t1 INNER JOIN ztNumberRange t2 ON t1.RuleOrigin = t2.RuleOrigin
+WHERE   t1.DqOpsId IS NULL
+        AND t2.LastNumberUsed < t2.ToNumber
+        AND t1.ID = @ID
+        AND T1.RuleOrigin = @RuleOrigin;  
+        UPDATE ztNumberRange
+SET    LastNumberUsed = LastNumberUsed + 1
+WHERE   ztNumberRange.RuleOrigin = @RuleOrigin 
+      END 
+  END
 GO
 /****** Object:  StoredProcedure [dbo].[webDQReportTracker_NewActionDetailIns]    Script Date: 2/12/2026 3:31:55 PM ******/
 SET ANSI_NULLS ON
@@ -3451,4 +3452,5 @@ END
 
 
 GO
+
 
