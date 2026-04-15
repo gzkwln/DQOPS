@@ -32,8 +32,10 @@ WRKDQOPS SKPv2
 13- Syniti Construct > System Administration > WebApps > DQ Ops > Vertical View > Import/Export > choose the corresponding section for files 280 to 330, e.g. Page Column- upload file 280 Page Column via Excel Integration. do the same for the rest of the files. 
 
 14- Files 900-910 are manually steps to be performed.
+	14a-> Adding Security Roles--> Admin>Security>Security Management>Security Roles
+	14b-> Addding Site Menu--> Admin>Configuration>Site Menu
 
-15- Clear Cache once done
+15- Clear Cache once done --> For clearing Cache: Admin>Configuration>Parameters
 
 16- The selection page will not work in the beginning because it's linked to a user table which is empty, fill that table using APIs or Manually to test if the selection page is working.
 
