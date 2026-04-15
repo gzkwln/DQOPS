@@ -35,7 +35,7 @@ WRKDQOPS SKPv2
 
 14a-> Adding Security Roles--> Admin>Security>Security Management>Security Roles
 
-14b-> Addding Site Menu--> Admin>Configuration>Site Menu
+14b-> Adding Site Menu--> Admin>Configuration>Site Menu
 
 15- Clear Cache once done --> For clearing Cache: Admin>Configuration>Parameters
 
