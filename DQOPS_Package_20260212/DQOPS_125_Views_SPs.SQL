@@ -3450,6 +3450,24 @@ BEGIN
 	update [dbo].[webParam_OnValidate_UsageChangeArchiveUpdSel] set HorizontalView = HorizontalViewNew
 END
 
+CREATE VIEW webJSON_USERS_Hor
+AS
+ 
+SELECT [ExtractID]
+      ,[id]
+      ,[name]
+      ,[email]
+      ,[email_notification]
+      ,[locale]
+      ,[opt_in]
+      ,[active]
+      ,[version_state]
+      ,[version]
+  FROM [WRKDQOPS].[dbo].[JSON_USERS]
+ 
+GO
+
+
 
 GO
 
